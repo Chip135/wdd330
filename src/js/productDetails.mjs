@@ -1,20 +1,37 @@
-import { setLocalStorage } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
+import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 
-function addProductToCart(product) {
-    setLocalStorage("so-cart", product);
+export default async function productDetails(productId) {
+  // get the details for the current product. findProductById will return a promise! use await or .then() to process it
+  let product = await findProductById(productId);
+  // once we have the product details we can render out the HTML
+  renderProductDetails(product);
+  // once the HTML is rendered we can add a listener to Add to Cart button
+  document.getElementById("addToCart").addEventListener("click", addToCart(product));
+  console.log(`Add to cart was clicked`);
 }
-// add to cart button event handler
-async function addToCartHandler(e) {
-    const product = await findProductById(e.target.dataset.id);
-    addProductToCart(product);
+function addToCart(product) {
+  let cartArray = getLocalStorage("so-cart");
+  console.log(`cartArray: ${cartArray}`);
+  if (!cartArray) {
+    console.log(`entered if statement`);
+    cartArray = [];
+    setLocalStorage("so-cart", cartArray);
+  }
+  cartArray.push(product);
+  console.log(`push cartArray: ${cartArray}`);
+  setLocalStorage("so-cart", cartArray);
 }
-// add listener to Add to Cart button
-document
-    .getElementById("addToCart")
-    .addEventListener("click", addToCartHandler);
-
-// CONTINUE HERE FROM STEP 6 OF TEAM ACTIVITY 2 https://byui-cit.github.io/wdd330/ponder/v3/team02.html
-// export default function productDetails(productId) {
-    
-// }
+function renderProductDetails(product) {
+  document.querySelector("#productName").innerText = product.Brand.Name;
+  document.querySelector("#productNameWithoutBrand").innerText =
+    product.NameWithoutBrand;
+  document.querySelector("#productImage").src = product.Image;
+  document.querySelector("#productImage").alt = product.Name;
+  document.querySelector("#productFinalPrice").innerText = product.FinalPrice;
+  document.querySelector("#productColorName").innerText =
+    product.Colors[0].ColorName;
+  document.querySelector("#productDescriptionHtmlSimple").innerHTML =
+    product.DescriptionHtmlSimple;
+  document.querySelector("#addToCart").dataset.id = product.Id;
+}
