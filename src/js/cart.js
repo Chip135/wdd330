@@ -3,7 +3,11 @@ import { getLocalStorage } from "./utils.mjs";
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems;
+  document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  superscript(htmlItems)
+}
+export function superscript(cart){
+  document.getElementById("count").innerHTML = cart.length;
 }
 
 function cartItemTemplate(item) {
