@@ -27,14 +27,12 @@ function addToCart() {
 }
 function renderProductDetails(product) {
   document.querySelector("#productName").innerText = product.Brand.Name;
-  document.querySelector("#productNameWithoutBrand").innerText =
-    product.NameWithoutBrand;
+  document.querySelector("#productNameWithoutBrand").innerText = product.NameWithoutBrand;
   document.querySelector("#productImage").src = product.Image;
   document.querySelector("#productImage").alt = product.Name;
-  document.querySelector("#productFinalPrice").innerText = product.FinalPrice;
-  document.querySelector("#productColorName").innerText =
-    product.Colors[0].ColorName;
-  document.querySelector("#productDescriptionHtmlSimple").innerHTML =
-    product.DescriptionHtmlSimple;
+  document.querySelector("#productSuggestedPrice").innerText = `$${product.SuggestedRetailPrice}`;
+  document.querySelector("#productFinalPrice").innerText = `$${product.FinalPrice}`;
+  document.querySelector("#productColorName").innerText = `Color(s): ${product.Colors[0].ColorName}`;
+  document.querySelector("#productDescriptionHtmlSimple").innerHTML = product.DescriptionHtmlSimple;
   document.querySelector("#addToCart").dataset.id = product.Id;
 }
