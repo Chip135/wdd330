@@ -15,7 +15,7 @@ export default async function productDetails(productId) {
 function addToCart() {
     //let cartArray = [];
   let cartArray = getLocalStorage("so-cart");
-  console.log(`cartArray: ${cartArray}`);
+  // console.log(`cartArray: ${cartArray}`);
   if (!cartArray) {
     //console.log(`entered if statement`);
     cartArray = [];
