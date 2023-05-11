@@ -1,12 +1,14 @@
 import { getLocalStorage } from "./utils.mjs";
+import { cartCount } from "./superscript.js";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
-  superscript(htmlItems)
+  //superscript(htmlItems)
+  cartCount();
 }
-export function superscript(cart){
+export function superscript(cart) {
   document.getElementById("count").innerHTML = cart.length;
 }
 
