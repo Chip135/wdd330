@@ -6,7 +6,7 @@ function renderCartContents() {
   let totalItems = 0
   cartItems.map((item) => (totalItems += item.FinalPrice));
   document.querySelector(".product-list").innerHTML = htmlItems;
-  document.querySelector(".cart-total").innerHTML = `Total: ${totalItems}`;
+  document.querySelector(".cart-total").innerHTML = `Total: $${totalItems}`;
 }
 
 function cartItemTemplate(item) {
