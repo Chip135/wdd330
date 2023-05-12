@@ -1,33 +1,28 @@
 import { getData } from "./productData.mjs";
+import { renderListWithTemplate } from "./utils.mjs";
 
-function productcardTemplate(){
+function productcardTemplate(product){
     return `<li class="product-card">
-    <a href="">
+    <a href="product_pages/index.html?product=${product.Id}">
       <img
-        src=""
-        alt="Image of "
+        src="${product.Image}"
+        alt="Image of ${product.Name}"
       />
-      <h3 class="card__brand"></h3>
-      <h2 class="card__name"></h2>
-      <p class="product-card__price">$</p></a>
+      <h3 class="card__brand">${product.Brand.Name}</h3>
+      <h2 class="card__name">${product.NameWithoutBrand}</h2>
+      <p class="product-card__price">$${product.FinalPrice}</p></a>
   </li>`
 }
 
-export default async function productList(category = "tents"){
+export default async function productList(selector, category = "tents"){
     const data = await getData(category);
-    console.table(data);
-    let productElement = document.querySelectorAll(".product-list");
-    data.forEach(product => 
-        productElement.innerHTML = productcardTemplate() ,
-        console.log("inside foreach loop")
-
-
+    let newkeep = data.filter(el =>
+        el.Id != "989CG" &&
+        el.Id != "880RT"
     );
-    //productElement.innerHTML = productcardTemplate(data);
+    const productElement = document.querySelector(selector);
+    renderListWithTemplate(productcardTemplate, productElement, newkeep);
+
     
 }
 
-function renderList(list, el) {
-    const htmlStrings =  list.map(productCardTemplate);
-    el.insertAdjacentHTML('afterbegin', htmlStrings.join(''));
-}
