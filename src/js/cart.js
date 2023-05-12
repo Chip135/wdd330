@@ -1,5 +1,4 @@
 import { getLocalStorage } from "./utils.mjs";
-import { cartCount } from "./superscript.js";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");

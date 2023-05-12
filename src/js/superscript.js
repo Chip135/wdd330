@@ -5,4 +5,11 @@ export function cartCount() {
   document.getElementById("count").innerHTML = cartItems.length;
 }
 //document.getElementById("addToCart").addEventListener("click", cartCount);
-cartCount();
+export function runCartCount() {
+  const cartItems = getLocalStorage("so-cart").length;
+  if (cartItems >= 1) {
+    cartCount(cartItems);
+  }
+}
+
+runCartCount();
