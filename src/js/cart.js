@@ -1,4 +1,5 @@
 import { getLocalStorage } from "./utils.mjs";
+import { cartCount } from "./superscript.js";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
@@ -11,6 +12,7 @@ function renderCartContents() {
     cartItems.map((item) => (totalItems += item.FinalPrice));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
     document.querySelector(".cart-total").innerHTML = `Total: $${totalItems}`;
+    cartCount();
   }
 }
 

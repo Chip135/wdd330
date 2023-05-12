@@ -102,6 +102,16 @@ button {
   position: relative;
   text-align: center;
 }
+.cart p {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  text-align: center;
+  top: 25px;
+  right: 3px;
+  border-radius: 5px;
+  background-color: rgb(248, 199, 109);
+}
 
 .cart svg {
   width: 25px;
