@@ -8,9 +8,15 @@ export default async function productDetails(productId) {
   let  product = await findProductById(productId);
   gproduct = product;
   // once we have the product details we can render out the HTML
-  renderProductDetails(product);
+  await renderProductDetails(product);
   // once the HTML is rendered we can add a listener to Add to Cart button
-  document.getElementById("addToCart").addEventListener("click", addToCart);
+  let cartButton = document.getElementById("addToCart");
+  if(!cartButton) {
+    return
+  } else {
+    cartButton.addEventListener("click", addToCart);
+  }
+  
   //console.log(`Add to cart was clicked`);
 }
 function addToCart() {
@@ -27,13 +33,20 @@ function addToCart() {
   setLocalStorage("so-cart", cartArray);
 }
 function renderProductDetails(product) {
-  document.querySelector("#productName").innerText = product.Brand.Name;
-  document.querySelector("#productNameWithoutBrand").innerText = product.NameWithoutBrand;
-  document.querySelector("#productImage").src = product.Image;
-  document.querySelector("#productImage").alt = product.Name;
-  document.querySelector("#productSuggestedPrice").innerText = `$${product.SuggestedRetailPrice}`;
-  document.querySelector("#productFinalPrice").innerText = `$${product.FinalPrice}`;
-  document.querySelector("#productColorName").innerText = `Color(s): ${product.Colors[0].ColorName}`;
-  document.querySelector("#productDescriptionHtmlSimple").innerHTML = product.DescriptionHtmlSimple;
-  document.querySelector("#addToCart").dataset.id = product.Id;
+  if(!product) {
+    document.querySelector(".product-detail").innerHTML = "Product not found";
+ 
+  } else {
+
+    document.querySelector("#productName").innerText = product.Brand.Name;
+    document.querySelector("#productNameWithoutBrand").innerText = product.NameWithoutBrand;
+    document.querySelector("#productImage").src = product.Image;
+    document.querySelector("#productImage").alt = product.Name;
+    document.querySelector("#productSuggestedPrice").innerText = `$${product.SuggestedRetailPrice}`;
+    document.querySelector("#productFinalPrice").innerText = `$${product.FinalPrice}`;
+    document.querySelector("#productColorName").innerText = `Color(s): ${product.Colors[0].ColorName}`;
+    document.querySelector("#productDescriptionHtmlSimple").innerHTML = product.DescriptionHtmlSimple;
+    document.querySelector("#addToCart").dataset.id = product.Id;
+
+  }
 }
