@@ -2,7 +2,7 @@ export default class Alert {
       
     renderAlert() {
         //Fetching the alert.json and get the response
-        const alerts = fetch("./js/alert.json")
+        const alerts = fetch("https://wdd330-alerts.onrender.com/alerts")
             .then((response) => response.json())
             .then((user) => user)
             .catch((error) => {
