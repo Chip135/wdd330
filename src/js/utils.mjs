@@ -43,3 +43,41 @@ export function renderListWithTemplate(
   const htmlStrings =  list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
 }
+
+export function renderWithTemplate(
+  templateFn, 
+  parentElement, 
+  data,
+  callback,
+  position = "afterbegin", 
+  clear = true) {
+  if (clear){
+    parentElement.innerHTML = "";
+  }
+  parentElement.insertAdjacentHTML(position, templateFn);
+  if(callback) {
+    callback(data);
+  };
+}
+
+function loadTemplate(path){
+  return async function () {
+    const res = await fetch(path);
+    if (res.ok) {
+      const html = await res.text();
+      console.log(html);
+      return html;
+    }
+    return res;
+  };
+}
+
+export function loadHeaderFooter (){
+  const headerTemplateFn = loadTemplate("/public/partials/header.html");
+  const footerTemplateFn = loadTemplate("/public/partials/footer.html");
+  const headerEl = document.getElementById("main-header");
+  const footerEl = document.getElementById("main-footer");
+
+  renderWithTemplate(headerTemplateFn, headerEl);
+  renderWithTemplate(footerTemplateFn, footerEl);
+}
