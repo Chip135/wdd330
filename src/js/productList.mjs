@@ -10,7 +10,10 @@ function productcardTemplate(product){
       />
       <h3 class="card__brand">${product.Brand.Name}</h3>
       <h2 class="card__name">${product.NameWithoutBrand}</h2>
-      <p class="product-card__price">$${product.FinalPrice}</p></a>
+      <div class="cart-card_prices">
+        <p>Suggested Retail: <span class="cart-card_suggested_price">$${product.SuggestedRetailPrice}</span></p>
+        <p>Your Price: <span class="cart-card__price">$${product.FinalPrice}</span></p>
+      </div></a>
   </li>`
 }
 
@@ -22,7 +25,7 @@ export default async function productList(selector, category){
         el.Id != "880RT"
     );
 
-    renderListWithTemplate(productcardTemplate, productElement, newkeep );
+    renderListWithTemplate(productcardTemplate, productElement, newkeep);
 
     
 }

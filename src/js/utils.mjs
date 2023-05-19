@@ -37,14 +37,14 @@ export function renderListWithTemplate(
   list, 
   position = "afterbegin", 
   clear = parentElement !== null) {
-    //console.log(parentElement);
+    // console.log(parentElement);
   if (clear){
     parentElement.innerHTML = "";
-    //console.log(parentElement);
+    // console.log(parentElement);
   }
     const htmlStrings =  list.map(templateFn);
   if (clear) {
-    parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
+    parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
   }
 }
 
@@ -70,7 +70,7 @@ function loadTemplate(path){
     const res = await fetch(path);
     if (res.ok) {
       const html = await res.text();
-      //console.log(html);
+      // console.log(html);
       return html;
     }
     return res;

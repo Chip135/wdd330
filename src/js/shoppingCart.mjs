@@ -17,13 +17,13 @@ export default function shoppingCart() {
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
-  <a href="#" class="cart-card__image">
+  <a href="../product_pages/index.html?product=${item.Id}" class="cart-card__image">
     <img
       src="${item.Image}"
       alt="${item.Name}"
     />
   </a>
-  <a href="#">
+  <a href="../product_pages/index.html?product=${item.Id}">
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">Color(s): ${item.Colors[0].ColorName}</p>
