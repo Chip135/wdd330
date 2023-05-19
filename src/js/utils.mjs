@@ -27,7 +27,7 @@ export function getParam(param) {
   // console.log(`Query String: ${queryString}`)
   const urlParams = new URLSearchParams(queryString);
   // console.log(`urlParams: ${urlParams}`)
-  const product = urlParams.get('product');
+  const product = urlParams.get(param);
   return product
 }
 
@@ -36,10 +36,53 @@ export function renderListWithTemplate(
   parentElement, 
   list, 
   position = "afterbegin", 
+  clear = parentElement !== null) {
+    //console.log(parentElement);
+  if (clear){
+    parentElement.innerHTML = "";
+    //console.log(parentElement);
+  }
+    const htmlStrings =  list.map(templateFn);
+  if (clear) {
+    parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
+  }
+}
+
+export async function renderWithTemplate(
+  templateFn, 
+  parentElement, 
+  data,
+  callback,
+  position = "afterbegin", 
   clear = true) {
   if (clear){
     parentElement.innerHTML = "";
   }
-  const htmlStrings =  list.map(templateFn);
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
+  const htmlString = await templateFn(data);
+  parentElement.insertAdjacentHTML(position, htmlString);
+  if(callback) {
+    callback(data);
+  };
+}
+
+function loadTemplate(path){
+  return async function () {
+    const res = await fetch(path);
+    if (res.ok) {
+      const html = await res.text();
+      //console.log(html);
+      return html;
+    }
+    return res;
+  };
+}
+
+export function loadHeaderFooter (){
+  const headerTemplateFn = loadTemplate("/partials/header.html");
+  const footerTemplateFn = loadTemplate("/partials/footer.html");
+  const headerEl = document.getElementById("main-header");
+  const footerEl = document.getElementById("main-footer");
+
+  renderWithTemplate(headerTemplateFn, headerEl);
+  renderWithTemplate(footerTemplateFn, footerEl);
 }
