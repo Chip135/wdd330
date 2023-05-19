@@ -27,14 +27,14 @@ export function getParam(param) {
   // console.log(`Query String: ${queryString}`)
   const urlParams = new URLSearchParams(queryString);
   // console.log(`urlParams: ${urlParams}`)
-  const product = urlParams.get('product');
+  const product = urlParams.get(param);
   return product
 }
 
 export function renderListWithTemplate(
   templateFn, 
-  list, 
   parentElement, 
+  list, 
   position = "afterbegin", 
   clear = parentElement !== null) {
     //console.log(parentElement);

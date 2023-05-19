@@ -4,4 +4,3 @@ import shoppingCart from "./shoppingCart.mjs";
 
 loadHeaderFooter();
 shoppingCart();
-console.log("inside cart");

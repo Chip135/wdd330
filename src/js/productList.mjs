@@ -22,7 +22,7 @@ export default async function productList(selector, category){
         el.Id != "880RT"
     );
 
-    renderListWithTemplate(productcardTemplate, newkeep, productElement );
+    renderListWithTemplate(productcardTemplate, productElement, newkeep );
 
     
 }

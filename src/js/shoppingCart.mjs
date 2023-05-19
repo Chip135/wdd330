@@ -3,9 +3,17 @@ import { cartCount } from "./superscript.js";
 
 export default function shoppingCart() {
     const cartItems = getLocalStorage("so-cart");
-    const outputEl = document.querySelector(".product-list");
-    renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
+    if (!cartItems) {
+      const htmlItems = "Your Cart is Empty!";
+      document.querySelector(".product-list").innerHTML = htmlItems;
+    } else {
+      const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+      let totalItems = 0;
+      cartItems.map((item) => (totalItems += item.FinalPrice));
+      document.querySelector(".product-list").innerHTML = htmlItems.join("");
+      document.querySelector(".cart-total").innerHTML = `Total: $${totalItems}`;
   }
+}
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">

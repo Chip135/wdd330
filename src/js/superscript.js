@@ -9,4 +9,4 @@ export function cartCount() {
   }
 }
 
-cartCount();
+//cartCount();
