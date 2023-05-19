@@ -33,18 +33,22 @@ export function getParam(param) {
 
 export function renderListWithTemplate(
   templateFn, 
-  parentElement, 
   list, 
+  parentElement, 
   position = "afterbegin", 
-  clear = true) {
+  clear = parentElement !== null) {
+    //console.log(parentElement);
   if (clear){
     parentElement.innerHTML = "";
+    //console.log(parentElement);
   }
-  const htmlStrings =  list.map(templateFn);
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
+    const htmlStrings =  list.map(templateFn);
+  if (clear) {
+    parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
+  }
 }
 
-export function renderWithTemplate(
+export async function renderWithTemplate(
   templateFn, 
   parentElement, 
   data,
@@ -54,7 +58,8 @@ export function renderWithTemplate(
   if (clear){
     parentElement.innerHTML = "";
   }
-  parentElement.insertAdjacentHTML(position, templateFn);
+  const htmlString = await templateFn(data);
+  parentElement.insertAdjacentHTML(position, htmlString);
   if(callback) {
     callback(data);
   };
@@ -65,7 +70,7 @@ function loadTemplate(path){
     const res = await fetch(path);
     if (res.ok) {
       const html = await res.text();
-      console.log(html);
+      //console.log(html);
       return html;
     }
     return res;
@@ -73,8 +78,8 @@ function loadTemplate(path){
 }
 
 export function loadHeaderFooter (){
-  const headerTemplateFn = loadTemplate("/public/partials/header.html");
-  const footerTemplateFn = loadTemplate("/public/partials/footer.html");
+  const headerTemplateFn = loadTemplate("/partials/header.html");
+  const footerTemplateFn = loadTemplate("/partials/footer.html");
   const headerEl = document.getElementById("main-header");
   const footerEl = document.getElementById("main-footer");
 

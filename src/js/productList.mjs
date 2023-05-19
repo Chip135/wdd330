@@ -14,14 +14,15 @@ function productcardTemplate(product){
   </li>`
 }
 
-export default async function productList(selector, category = "tents"){
+export default async function productList(selector, category){
+    const productElement = document.querySelector(selector);
     const data = await getData(category);
     let newkeep = data.filter(el =>
         el.Id != "989CG" &&
         el.Id != "880RT"
     );
-    const productElement = document.querySelector(selector);
-    renderListWithTemplate(productcardTemplate, productElement, newkeep);
+
+    renderListWithTemplate(productcardTemplate, newkeep, productElement );
 
     
 }
