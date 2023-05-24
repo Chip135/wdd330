@@ -27,7 +27,7 @@ export default async function productList(selector, category){
     );
 
     renderListWithTemplate(productcardTemplate, productElement, newkeep);
-
+}
 
 function changeTitle() {
   const title = getParam("category");
