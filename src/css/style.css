@@ -129,7 +129,8 @@ button {
   max-width: 600px;
   margin: auto;
 }
-.products {
+.products,
+.cart-total {
   padding: 0.5em;
 }
 .product-list {
