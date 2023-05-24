@@ -9,6 +9,8 @@ export default async function productDetails(productId) {
   // get the details for the current product. findProductById will return a promise! use await or .then() to process it
   let  product = await findProductById(productId);
   gproduct = product;
+  
+  Object.assign(gproduct, {"Quantity":1});
   // once we have the product details we can render out the HTML
   await renderProductDetails(product);
   // once the HTML is rendered we can add a listener to Add to Cart button
@@ -18,20 +20,35 @@ export default async function productDetails(productId) {
   } else {
     cartButton.addEventListener("click", addToCart);
   }
-  
+};
   // console.log(`Add to cart was clicked`);
-}
+
 function addToCart() {
     //let cartArray = [];
   let cartArray = getLocalStorage("so-cart");
-  // console.log(`cartArray: ${cartArray}`);
+  let existing = false; //To check if exists or not
+  
   if (!cartArray) {
-    // console.log(`entered if statement`);
     cartArray = [];
     setLocalStorage("so-cart", cartArray);
+  } else {
+    if (cartArray.length == 0) {
+        return //so can be added at last
+    } else {
+      //Check if product exist in the cart
+      cartArray.map(element => { 
+        if (element.Id == gproduct.Id) {
+          element.Quantity += 1; // if exists, adds one number
+          setLocalStorage("so-cart", cartArray);
+          existing = true; // set the existing
+        }
+      })
+    };
   }
-  cartArray.push(gproduct);
-  // console.log(`push cartArray: ${cartArray}`);
+  if (existing == false) { // if the product doesn't exist at last, it will add it
+    cartArray.push(gproduct);
+  };
+ 
   setLocalStorage("so-cart", cartArray);
 }
 function renderProductDetails(product) {
