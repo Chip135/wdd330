@@ -25,7 +25,7 @@ export default async function productList(selector, category){
         el.Id != "989CG" &&
         el.Id != "880RT"
     );
-
+    }
     renderListWithTemplate(productcardTemplate, productElement, newkeep);
 
 
