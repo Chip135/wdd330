@@ -158,6 +158,11 @@ button {
   margin: 0.5em 0;
 }
 
+.product-card img {
+  display: block;
+  margin: 0 auto;
+}
+
 .card__brand {
   font-size: var(--small-font);
 }
