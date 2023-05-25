@@ -1,6 +1,6 @@
 import { findProductById } from "./productData.mjs";
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
-
+import { shakeCart } from "./shakecart.mjs";
 
 
 
@@ -16,7 +16,7 @@ export default async function productDetails(productId) {
   if(!cartButton) {
     return
   } else {
-    cartButton.addEventListener("click", addToCart);
+    cartButton.addEventListener("click", addToCart, shakeCart);
   }
   
   // console.log(`Add to cart was clicked`);
