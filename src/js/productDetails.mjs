@@ -1,4 +1,5 @@
 import { findProductById } from "./productData.mjs";
+import { cartCount } from "./superscript.mjs";
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 import { shakeCart } from "./shakecart.mjs";
 
@@ -43,6 +44,7 @@ function addToCart() {
           existing = true; // set the existing
         }
       })
+      setTimeout(cartCount, 250);
     };
   }
   if (existing == false) { // if the product doesn't exist at last, it will add it
