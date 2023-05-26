@@ -1,4 +1,4 @@
-import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
+import { getLocalStorage } from "./utils.mjs";
 
 export default function shoppingCart() {
     const cartItems = getLocalStorage("so-cart");
@@ -10,7 +10,7 @@ export default function shoppingCart() {
       let totalItems = 0;
       cartItems.map((item) => (totalItems += (item.FinalPrice * item.Quantity)));
       document.querySelector(".product-list").innerHTML = htmlItems.join("");
-      document.querySelector(".cart-total").innerHTML = `Total: $${totalItems}`;
+      document.querySelector(".cart-total").innerHTML = `Total: $${totalItems.toFixed(2)}`;
   }
 }
 
@@ -19,7 +19,7 @@ function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="../product_pages/index.html?product=${item.Id}" class="cart-card__image">
     <img
-      src="${item.Images.PrimarySmall}"
+      src="${item.Images.PrimaryMedium}"
       alt="${item.Name}"
     />
   </a>
