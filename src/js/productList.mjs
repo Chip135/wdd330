@@ -52,8 +52,7 @@ async function searchString() {
 
   
   string.toLowerCase();
-  // console.log(string);
-  
+    
   var data1 = await getData("tents");
   var data2 = await getData("backpacks");
   var data3 = await getData("hammocks");
