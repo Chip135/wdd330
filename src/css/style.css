@@ -238,6 +238,19 @@ button {
   font-weight: 550;
 }
 
+#form {
+  display: flex;
+}
+
+.form-container {
+  align-self: center;
+}
+
+.form-container button {
+  padding: 0.2em 2em;
+  height: 100%;
+}
+
 @keyframes shake {
   10%,
   90% {
