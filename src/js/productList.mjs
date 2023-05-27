@@ -20,11 +20,11 @@ function productcardTemplate(product){
 
 export default async function productList(selector, category){
     const productElement = document.querySelector(selector);
-    const data = await getData(category);
-    let newkeep = data.filter(el =>
-        el.Id != "989CG" &&
-        el.Id != "880RT"
-    );
+    const newkeep = await getData(category);
+    // let newkeep = data.filter(el =>
+    //     el.Id != "989CG" &&
+    //     el.Id != "880RT"
+    // );
     
     renderListWithTemplate(productcardTemplate, productElement, newkeep);
     
