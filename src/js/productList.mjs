@@ -27,13 +27,49 @@ export default async function productList(selector, category){
     );
     
     renderListWithTemplate(productcardTemplate, productElement, newkeep);
+    
 }
 
 function changeTitle() {
   const title = getParam("category");
-  document.querySelector(".cat-name").innerText = title.charAt(0).toUpperCase() + title.slice(1);
+  const string = getParam("search");
+  if (!title) {
+    document.querySelector(".cat-name").innerText = string;
+  } else {
+    document.querySelector(".cat-name").innerText = title.charAt(0).toUpperCase() + title.slice(1);
+  }
+  
   
 };
 
 changeTitle();
 
+async function searchString() {
+  const string = await getParam("search");
+  if (!string) {
+    return
+  } else {
+
+  
+  string.toLowerCase();
+  // console.log(string);
+  
+  var data1 = await getData("tents");
+  var data2 = await getData("backpacks");
+  var data3 = await getData("hammocks");
+  var data4 = await getData("sleeping-bags");
+
+  const fulldata = [...data1, ...data2, ...data3, ...data4];
+  
+  var newkeep = fulldata.filter(el =>
+    el.Name.toLowerCase().includes(string)
+  );
+}
+  
+  const productElement = document.querySelector(".product-list");
+    
+  renderListWithTemplate(productcardTemplate, productElement, newkeep);
+
+}
+
+searchString();
