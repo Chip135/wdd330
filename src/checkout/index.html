@@ -22,70 +22,81 @@
         <form
           method="post"
           action="http://server-nodejs.cit.byui.edu:3000/checkout"
-          class="checkoutForm"
+          class="checkoutMainForm"
         >
-          <fieldset class="checkoutForm">
+          <fieldset id="shippingForm">
             <legend>Shipping</legend>
-            <label
-              >First Name
-              <input type="text" name="fname" required />
-            </label>
-            <label
-              >Last Name
-              <input type="text" name="lname" required />
-            </label>
-            <label
-              >Street Address
-              <input type="text" name="street" required />
-            </label>
-            <label
-              >City
-              <input type="text" name="city" required />
-            </label>
-            <label
-              >State
-              <input type="text" name="state" required />
-            </label>
-            <label
-              >Zip Code
-              <input type="text" name="lname" required pattern="[0-9]{5}" />
-            </label>
+            <div class="checkoutForm">
+              <label
+                >First Name
+                <input type="text" name="fname" required />
+              </label>
+              <label
+                >Last Name
+                <input type="text" name="lname" required />
+              </label>
+              <label
+                >Street Address
+                <input type="text" name="street" required />
+              </label>
+            </div>
+            <div class="checkoutForm">
+              <label
+                >City
+                <input type="text" name="city" required />
+              </label>
+              <label
+                >State
+                <input type="text" name="state" required />
+              </label>
+              <label
+                >Zip Code
+                <input type="text" name="lname" pattern="[0-9]{5}" required />
+              </label>
+            </div>
           </fieldset>
-          <fieldset class="checkoutForm">
+          <fieldset id="paymentForm">
             <legend>Payment</legend>
-            <label
-              >Card Number
-              <input type="text" name="card" required pattern="[0-9]{12,16}" />
-            </label>
-            <label
-              >Expiration
-              <input
-                type="text"
-                name="expiration"
-                required
-                placeholder="MM/YY"
-              />
-            </label>
-            <label
-              >Security Code
-              <input
-                type="text"
-                name="security-code"
-                required
-                pattern="[0-9]{3,4}"
-              />
-            </label>
+            <div class="checkoutForm">
+              <label
+                >Card Number
+                <input
+                  type="text"
+                  name="card"
+                  pattern="[0-9]{12,16}"
+                  required
+                />
+              </label>
+              <label
+                >Expiration
+                <input
+                  type="text"
+                  name="expiration"
+                  placeholder="MM/YY"
+                  required
+                />
+              </label>
+              <label
+                >Security Code
+                <input
+                  type="text"
+                  name="security-code"
+                  pattern="[0-9]{3,4}"
+                  required
+                />
+              </label>
+            </div>
           </fieldset>
           <fieldset class="orderSummary">
             <legend>Order Summary</legend>
-            <label
-              >Item Subtotal(<span id="cartAmount"></span>)
+            <label id="subtotalText"
+              >Item Subtotal ()
               <input
                 type="text"
                 name="subtotal"
                 value="Filler"
-                disabled
                 id="subtotal"
+                disabled
               />
             </label>
             <label
@@ -94,13 +105,13 @@
                 type="text"
                 name="shipping"
                 value="Filler"
-                disabled
                 id="shipping"
+                disabled
               />
             </label>
             <label
               >Tax
-              <input type="text" name="tax" value="Filler" disabled id="tax" />
+              <input type="text" name="tax" value="Filler" id="tax" disabled />
             </label>
             <label
               >Order Total
@@ -108,12 +119,12 @@
                 type="text"
                 name="order-total"
                 value="Filler"
-                disabled
                 id="order-total"
+                disabled
               />
             </label>
           </fieldset>
-          <button type="submit">Checkout</button>
+          <button type="submit" id="submit">Checkout</button>
         </form>
       </section>
     </main>

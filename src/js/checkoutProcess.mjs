@@ -20,7 +20,7 @@ const checkoutProcess = {
     calculateItemSummary: function() {
         console.log("entered calculateItemSummary");
         const summaryAmount = checkoutCount();
-        document.querySelector("#cartAmount").innerHTML = summaryAmount;
+        document.querySelector("#subtotalText").innerHTML = `Item Subtotal (${summaryAmount})`;
         console.log("finished calculateItemSummary");
     }
 
