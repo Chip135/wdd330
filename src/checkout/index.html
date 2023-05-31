@@ -9,7 +9,8 @@
     <title>Sleep Outside | Checkout</title>
 
     <link rel="stylesheet" href="../css/style.css" />
-    <script src="../js/checkout.js" type="module"></script> 
+    <script src="../js/checkout.js" type="module"></script>
+    <script src="../js/checkoutProcess.mjs" type="module"></script>
   </head>
 
   <body>
@@ -18,53 +19,98 @@
     <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
-        <form method="post" action="http://server-nodejs.cit.byui.edu:3000/checkout" class="checkoutForm">
+        <form
+          method="post"
+          action="http://server-nodejs.cit.byui.edu:3000/checkout"
+          class="checkoutForm"
+        >
           <fieldset class="checkoutForm">
             <legend>Shipping</legend>
-            <label>First Name
-              <input type="text" name="fname" required>
+            <label
+              >First Name
+              <input type="text" name="fname" required />
             </label>
-            <label>Last Name
-              <input type="text" name="lname" required>
+            <label
+              >Last Name
+              <input type="text" name="lname" required />
             </label>
-            <label>Street Address
-              <input type="text" name="street" required>
+            <label
+              >Street Address
+              <input type="text" name="street" required />
             </label>
-            <label>City
-              <input type="text" name="city" required>
+            <label
+              >City
+              <input type="text" name="city" required />
             </label>
-            <label>State
-              <input type="text" name="state" required>
+            <label
+              >State
+              <input type="text" name="state" required />
             </label>
-            <label>Zip Code
-              <input type="text" name="lname" required pattern="[0-9]{5}">
+            <label
+              >Zip Code
+              <input type="text" name="lname" required pattern="[0-9]{5}" />
             </label>
           </fieldset>
           <fieldset class="checkoutForm">
             <legend>Payment</legend>
-            <label>Card Number
-              <input type="text" name="card" required pattern="[0-9]{12,16}">
+            <label
+              >Card Number
+              <input type="text" name="card" required pattern="[0-9]{12,16}" />
             </label>
-            <label>Expiration
-              <input type="text" name="expiration" required placeholder="MM/YY">
+            <label
+              >Expiration
+              <input
+                type="text"
+                name="expiration"
+                required
+                placeholder="MM/YY"
+              />
             </label>
-            <label>Security Code
-              <input type="text" name="security-code" required pattern="[0-9]{3,4}">
+            <label
+              >Security Code
+              <input
+                type="text"
+                name="security-code"
+                required
+                pattern="[0-9]{3,4}"
+              />
             </label>
           </fieldset>
           <fieldset class="orderSummary">
             <legend>Order Summary</legend>
-            <label>Item Subtotal(<span id="cartAmount"></span>)
-              <input type="text" name="subtotal" value="Filler" disabled id="subtotal">
+            <label
+              >Item Subtotal(<span id="cartAmount"></span>)
+              <input
+                type="text"
+                name="subtotal"
+                value="Filler"
+                disabled
+                id="subtotal"
+              />
             </label>
-            <label>Shipping Estimate
-              <input type="text" name="shipping" value="Filler" disabled id="shipping">
+            <label
+              >Shipping Estimate
+              <input
+                type="text"
+                name="shipping"
+                value="Filler"
+                disabled
+                id="shipping"
+              />
             </label>
-            <label>Tax
-              <input type="text" name="tax" value="Filler" disabled id="tax">
+            <label
+              >Tax
+              <input type="text" name="tax" value="Filler" disabled id="tax" />
             </label>
-            <label>Order Total
-              <input type="text" name="order-total" value="Filler" disabled id="order-total">
+            <label
+              >Order Total
+              <input
+                type="text"
+                name="order-total"
+                value="Filler"
+                disabled
+                id="order-total"
+              />
             </label>
           </fieldset>
           <button type="submit">Checkout</button>
@@ -73,6 +119,5 @@
     </main>
 
     <footer id="main-footer"></footer>
-    <!-- <script src="../js/checkout.js"></script>  -->
   </body>
 </html>
