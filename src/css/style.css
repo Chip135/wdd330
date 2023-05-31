@@ -240,6 +240,12 @@ button {
 
 #form {
   display: flex;
+  flex-direction: column;
+}
+
+.checkoutForm label,
+input {
+  display: block;
 }
 
 .form-container {
