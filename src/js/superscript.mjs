@@ -11,6 +11,6 @@ export async function cartCount() {
     cartItems.forEach(e => {
       count += e.Quantity;
     });
-   document.querySelector("#count").innerHTML = count;
- };
+  document.querySelector("#count").innerHTML = count;
+  };
 };

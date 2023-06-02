@@ -8,8 +8,9 @@
 
     <title>Sleep Outside | Checkout</title>
 
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="js/checkout.js"></script>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/checkout.js" type="module"></script>
+    <script src="../js/checkoutProcess.mjs" type="module"></script>
   </head>
 
   <body>
@@ -18,6 +19,105 @@
     <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
+        <form name="checkout" class="checkoutMainForm">
+          <fieldset id="shippingForm">
+            <legend>Shipping</legend>
+            <div class="checkoutForm">
+              <label
+                >First Name
+                <input type="text" name="fname" required />
+              </label>
+              <label
+                >Last Name
+                <input type="text" name="lname" required />
+              </label>
+              <label
+                >Street Address
+                <input type="text" name="street" required />
+              </label>
+            </div>
+            <div class="checkoutForm">
+              <label
+                >City
+                <input type="text" name="city" required />
+              </label>
+              <label
+                >State
+                <input type="text" name="state" required />
+              </label>
+              <label
+                >Zip Code
+                <input
+                  type="text"
+                  name="zip"
+                  pattern="[0-9]{5}"
+                  id="zip"
+                  required
+                />
+              </label>
+            </div>
+          </fieldset>
+          <fieldset id="paymentForm">
+            <legend>Payment</legend>
+            <div class="checkoutForm">
+              <label
+                >Card Number
+                <input name="cardNumber" required />
+              </label>
+              <label
+                >Expiration
+                <input
+                  type="text"
+                  name="expiration"
+                  placeholder="MM/YY"
+                  required
+                />
+              </label>
+              <label
+                >Security Code
+                <input type="text" name="code" pattern="[0-9]{3,4}" required />
+              </label>
+            </div>
+          </fieldset>
+          <fieldset class="orderSummary">
+            <legend>Order Summary</legend>
+            <label id="subtotalText"
+              >Item Subtotal (<span id="cartTotal"></span>)
+              <input
+                type="text"
+                name="subtotal"
+                value=""
+                id="subtotal"
+                disabled
+              />
+            </label>
+            <label
+              >Shipping Estimate
+              <input
+                type="text"
+                name="shipping"
+                value=""
+                id="shipping"
+                disabled
+              />
+            </label>
+            <label
+              >Tax
+              <input type="text" name="tax" value="" id="tax" disabled />
+            </label>
+            <label
+              >Order Total
+              <input
+                type="text"
+                name="order-total"
+                value=""
+                id="order-total"
+                disabled
+              />
+            </label>
+          </fieldset>
+          <button type="submit" id="submit">Checkout</button>
+        </form>
       </section>
     </main>
 
