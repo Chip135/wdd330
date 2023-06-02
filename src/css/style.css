@@ -262,16 +262,16 @@ fieldset {
   display: flex;
   gap: 2rem;
   grid-row: 1 / span 1;
-  /* flex-wrap: wrap; */
 }
 
-.checkoutForm,
-.checkoutForm label,
-.orderSummary,
-.orderSummary label {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.checkoutForm *,
+.orderSummary * {
+  display: block;
+  margin-top: 15px;
+}
+
+#cartTotal {
+  display: inline;
 }
 
 .orderSummary label input {

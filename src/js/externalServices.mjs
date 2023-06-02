@@ -19,3 +19,14 @@ export async function findProductById(id) {
   const data2 = await convertToJson(response2);
   return data2.Result;
 }
+
+export async function checkout(payload) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  };
+  return await fetch(baseURL + "checkout/", options).then(convertToJson);
+}

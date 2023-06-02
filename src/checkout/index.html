@@ -19,11 +19,7 @@
     <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
-        <form
-          method="post"
-          action="http://server-nodejs.cit.byui.edu:3000/checkout"
-          class="checkoutMainForm"
-        >
+        <form name="checkout" class="checkoutMainForm">
           <fieldset id="shippingForm">
             <legend>Shipping</legend>
             <div class="checkoutForm">
@@ -51,7 +47,13 @@
               </label>
               <label
                 >Zip Code
-                <input type="text" name="lname" pattern="[0-9]{5}" required />
+                <input
+                  type="text"
+                  name="zip"
+                  pattern="[0-9]{5}"
+                  id="zip"
+                  required
+                />
               </label>
             </div>
           </fieldset>
@@ -60,12 +62,7 @@
             <div class="checkoutForm">
               <label
                 >Card Number
-                <input
-                  type="text"
-                  name="card"
-                  pattern="[0-9]{12,16}"
-                  required
-                />
+                <input name="cardNumber" required />
               </label>
               <label
                 >Expiration
@@ -78,23 +75,18 @@
               </label>
               <label
                 >Security Code
-                <input
-                  type="text"
-                  name="security-code"
-                  pattern="[0-9]{3,4}"
-                  required
-                />
+                <input type="text" name="code" pattern="[0-9]{3,4}" required />
               </label>
             </div>
           </fieldset>
           <fieldset class="orderSummary">
             <legend>Order Summary</legend>
             <label id="subtotalText"
-              >Item Subtotal ()
+              >Item Subtotal (<span id="cartTotal"></span>)
               <input
                 type="text"
                 name="subtotal"
-                value="Filler"
+                value=""
                 id="subtotal"
                 disabled
               />
@@ -104,21 +96,21 @@
               <input
                 type="text"
                 name="shipping"
-                value="Filler"
+                value=""
                 id="shipping"
                 disabled
               />
             </label>
             <label
               >Tax
-              <input type="text" name="tax" value="Filler" id="tax" disabled />
+              <input type="text" name="tax" value="" id="tax" disabled />
             </label>
             <label
               >Order Total
               <input
                 type="text"
                 name="order-total"
-                value="Filler"
+                value=""
                 id="order-total"
                 disabled
               />
