@@ -210,7 +210,7 @@ button {
   grid-column: 2;
 }
 
-.cart-card__quantity {
+.cart-card__quantity{
   grid-row: 1;
   grid-column: 3;
 }
@@ -218,6 +218,14 @@ button {
 .card__name,
 .cart-card__color {
   text-align: center;
+}
+
+.removeFromCart{
+  grid-row: 1;
+  grid-column: 3;
+  display: block;
+  background-color: white;
+  color: red;
 }
 
 #productSuggestedPrice,
