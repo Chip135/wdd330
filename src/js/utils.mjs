@@ -78,6 +78,7 @@ function loadTemplate(path){
 }
 
 export function loadHeaderFooter (){
+  // console.log("in loadHeaderFooter");
   const headerTemplateFn = loadTemplate("/partials/header.html");
   const footerTemplateFn = loadTemplate("/partials/footer.html");
   const headerEl = document.getElementById("main-header");
@@ -85,4 +86,5 @@ export function loadHeaderFooter (){
 
   renderWithTemplate(headerTemplateFn, headerEl);
   renderWithTemplate(footerTemplateFn, footerEl);
+  // console.log("finished loadHeaderFooter");
 }

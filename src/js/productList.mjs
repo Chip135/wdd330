@@ -1,4 +1,4 @@
-import { getData } from "./productData.mjs";
+import { getProductsByCategory } from "./externalServices.mjs";
 import { renderListWithTemplate } from "./utils.mjs";
 import { getParam } from "./utils.mjs";
 
@@ -20,7 +20,7 @@ function productcardTemplate(product){
 
 export default async function productList(selector, category){
     const productElement = document.querySelector(selector);
-    const newkeep = await getData(category);
+    const newkeep = await getProductsByCategory(category);
     // let newkeep = data.filter(el =>
     //     el.Id != "989CG" &&
     //     el.Id != "880RT"
@@ -53,10 +53,10 @@ async function searchString() {
   
   string.toLowerCase();
     
-  var data1 = await getData("tents");
-  var data2 = await getData("backpacks");
-  var data3 = await getData("hammocks");
-  var data4 = await getData("sleeping-bags");
+  var data1 = await getProductsByCategory("tents");
+  var data2 = await getProductsByCategory("backpacks");
+  var data3 = await getProductsByCategory("hammocks");
+  var data4 = await getProductsByCategory("sleeping-bags");
 
   const fulldata = [...data1, ...data2, ...data3, ...data4];
   

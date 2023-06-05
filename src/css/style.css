@@ -91,6 +91,11 @@ button {
   font-size: var(--large-font);
   cursor: pointer;
 }
+a {
+  text-decoration: none;
+  color: white;
+}
+
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
@@ -248,6 +253,43 @@ button {
 
 #form {
   display: flex;
+}
+
+fieldset {
+  width: fit-content;
+}
+
+.checkoutMainForm {
+  display: grid;
+  grid-template-columns: 1.75fr 1fr 1fr;
+  justify-items: center;
+}
+
+#shippingForm,
+#paymentForm {
+  display: flex;
+  gap: 2rem;
+  grid-row: 1 / span 1;
+}
+
+.checkoutForm *,
+.orderSummary * {
+  display: block;
+  margin-top: 15px;
+}
+
+#cartTotal {
+  display: inline;
+}
+
+.orderSummary label input {
+  background-color: white;
+  border: none;
+}
+
+#submit {
+  margin-top: 1rem;
+  grid-column: 1 / -1;
 }
 
 .form-container {
