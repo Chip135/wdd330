@@ -15,4 +15,5 @@ document
 document.forms["checkout"].addEventListener("submit", (e) => {
   e.preventDefault();
   checkoutProcess.checkout(e.target);
+  
 });

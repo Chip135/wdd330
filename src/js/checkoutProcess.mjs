@@ -14,7 +14,7 @@ function formDataToJSON(formElement) {
 
 function packageItems(items) {
   const simplifiedItems = items.map((item) => {
-    console.log(item);
+    //console.log(item);
     return {
       id: item.Id,
       price: item.FinalPrice,
@@ -34,30 +34,30 @@ const checkoutProcess = {
     tax: 0,
     orderTotal: 0,
     init: function (key, outputSelector) {
-        console.log("entered init");
+        //console.log("entered init");
         this.key = key;
         this.outputSelector = outputSelector;
         this.list = getLocalStorage(key);
         this.calculateItemSummary();
         // this.calculateOrderTotal(); // delete when zip is done
-        console.log("finished init");
+        //console.log("finished init");
     },
 
     calculateItemSummary: async function() {
-        console.log("entered calculateItemSummary");
+        //console.log("entered calculateItemSummary");
         const summaryAmount = await checkoutCount();
         const cartTotal = document.querySelector("#cartTotal")
         cartTotal.innerHTML = summaryAmount;
         this.list.forEach(e => {
             this.itemTotal += e.FinalPrice * e.Quantity;
         });
-        console.log(`total: ${this.itemTotal}`);
+        //console.log(`total: ${this.itemTotal}`);
         document.querySelector("#subtotal").value = `$${this.itemTotal.toFixed(2)}`;
-        console.log("finished calculateItemSummary");
+        //console.log("finished calculateItemSummary");
     },
 
     calculateOrderTotal: async function() {
-        console.log("entered calculateOrderTotal");
+        //console.log("entered calculateOrderTotal");
         let itemsAmount = await checkoutCount();
         this.shipping = 10 + (itemsAmount - 1) * 2;
         this.tax = (this.itemTotal * 0.06).toFixed(2);
@@ -67,15 +67,15 @@ const checkoutProcess = {
             parseFloat(this.tax)
         ).toFixed(2);
         this.displayOrderTotals();
-        console.log("finished calculateOrderTotal");
+        //console.log("finished calculateOrderTotal");
     },
 
     displayOrderTotals: async function() {
-        console.log("entered displayOrderTotals");
+        //console.log("entered displayOrderTotals");
         document.querySelector("#shipping").value = `$${this.shipping}`;
         document.querySelector("#tax").value = `$${this.tax}`;
         document.querySelector("#order-total").value = `$${this.orderTotal}`;
-        console.log("finished displayOrderTotals");
+        //console.log("finished displayOrderTotals");
     },
 
     checkout: async function (form) {
@@ -85,10 +85,12 @@ const checkoutProcess = {
         json.tax = this.tax;
         json.shipping = this.shipping;
         json.items = packageItems(this.list);
-        console.log(json);
+        //console.log(json);
         try {
           const res = await checkout(json);
           console.log(res);
+          window.location.href="../checkout/success.html";
+          localStorage.clear();
         } catch (err) {
           console.log(err);
         }
