@@ -53,18 +53,6 @@ function addToCart() {
   setLocalStorage("so-cart", cartArray);
 }
 
-export function removeFromCart(id) {
-
-  let items = getLocalStorage("so-cart");
-  items.forEach(function(item, index) {
-    if(id === item.Id){
-      items.splice(index, 1);
-    }
-     setTimeout(cartCount, 250);
-  });
-  setLocalStorage("so-cart", items);
-}
-
 function renderProductDetails(product) {
   if(!product) {
     document.querySelector(".product-detail").innerHTML = "Product not found";

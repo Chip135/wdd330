@@ -1,5 +1,4 @@
 import { getLocalStorage } from "./utils.mjs";
-import { removeFromCart } from "./productDetails.mjs";
 
 export default async function shoppingCart() {
     const cartItems = getLocalStorage("so-cart");
@@ -12,13 +11,7 @@ export default async function shoppingCart() {
       cartItems.map((item) => (totalItems += (item.FinalPrice * item.Quantity)));
       document.querySelector(".product-list").innerHTML = htmlItems.join("");
       document.querySelector(".cart-total").innerHTML = `Total: $${totalItems.toFixed(2)}`;
-      let dataId = "";
-        if (dataId == "") {
-        cartItems.map((item) => (dataId = item.Id));
-        document.querySelector("#removeFromCart").dataset.id = dataId;
-      // document.querySelector("#removeFromCart").addEventListener('click', removeFromCart(dataId));
-      }}
-}
+    }};
 
 function cartItemTemplate(item) {
   let total = item.Quantity * item.FinalPrice;
@@ -33,13 +26,12 @@ function cartItemTemplate(item) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">Color(s): ${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">Qty: ${item.Quantity}</p>
-  <button id="removeFromCart" data-id="">X</button></i>
   <div class="quantityBox">
     <button class="${item.Id} quantAddSub add">+</button>
     <p class="cart-card__quantity">Qty: ${item.Quantity}</p>
     <button class="${item.Id} quantAddSub subtract">-</button>
-    </div>
+    <button class="removeFromCart" data-id="${item.Id}">X</button></i>
+  </div>
   <div class="cart-card_prices">
     <p>Suggested Retail: <span class="cart-card_suggested_price">$${item.SuggestedRetailPrice}</span></p>
     <p>Your Price: <span class="cart-card__price">$${item.FinalPrice}</span></p>

@@ -6,6 +6,7 @@ shoppingCart();
 setTimeout(cartCount, 250);
 
 let cartEventListeners = document.querySelectorAll(".quantAddSub");
+let removeFromCartListners = document.querySelectorAll(".removeFromCart");
 
 cartEventListeners.forEach((element) => {
   element.addEventListener("click", (btn) => {
@@ -53,3 +54,33 @@ cartEventListeners.forEach((element) => {
     location.reload();
   });
 });
+
+removeFromCartListners.forEach((element) => {
+  element.addEventListener("click", (btn) => {
+    const cartItems = getLocalStorage("so-cart");
+    const removeItem = btn.target.dataset.id;
+
+    cartItems.forEach(function(item, index) {
+      if (removeItem == item.Id){
+        cartItems.splice(index, 1);
+      }
+    })
+    setLocalStorage("so-cart", cartItems);
+    if (cartItems.length == 0){
+      localStorage.clear();
+    }
+    location.reload();
+  })
+})
+
+// export function removeFromCart(id) {
+
+//   let items = getLocalStorage("so-cart");
+//   items.forEach(function(item, index) {
+//     if(id === item.Id){
+//       items.splice(index, 1);
+//     }
+//      setTimeout(cartCount, 250);
+//   });
+//   setLocalStorage("so-cart", items);
+// }

@@ -231,7 +231,7 @@ button {
   text-align: center;
 }
 
-#removeFromCart{
+.removeFromCart{
   grid-row: 1;
   grid-column: 3;
   display: block;
