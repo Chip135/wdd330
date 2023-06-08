@@ -221,7 +221,7 @@ button {
   grid-column: 2;
 }
 
-.cart-card__quantity{
+.cart-card__quantity {
   grid-row: 1;
   grid-column: 3;
 }
@@ -231,7 +231,7 @@ button {
   text-align: center;
 }
 
-.removeFromCart{
+.removeFromCart {
   grid-row: 1;
   grid-column: 3;
   display: block;
