@@ -1,6 +1,6 @@
 import { getLocalStorage } from "./utils.mjs";
 
-export default function shoppingCart() {
+export default async function shoppingCart() {
     const cartItems = getLocalStorage("so-cart");
     if (!cartItems) {
       const htmlItems = "Your Cart is Empty!";
@@ -11,8 +11,7 @@ export default function shoppingCart() {
       cartItems.map((item) => (totalItems += (item.FinalPrice * item.Quantity)));
       document.querySelector(".product-list").innerHTML = htmlItems.join("");
       document.querySelector(".cart-total").innerHTML = `Total: $${totalItems.toFixed(2)}`;
-  }
-}
+    }};
 
 function cartItemTemplate(item) {
   let total = item.Quantity * item.FinalPrice;
@@ -31,7 +30,8 @@ function cartItemTemplate(item) {
     <button class="${item.Id} quantAddSub add">+</button>
     <p class="cart-card__quantity">Qty: ${item.Quantity}</p>
     <button class="${item.Id} quantAddSub subtract">-</button>
-    </div>
+    <button class="removeFromCart" data-id="${item.Id}">X</button></i>
+  </div>
   <div class="cart-card_prices">
     <p>Suggested Retail: <span class="cart-card_suggested_price">$${item.SuggestedRetailPrice}</span></p>
     <p>Your Price: <span class="cart-card__price">$${item.FinalPrice}</span></p>
