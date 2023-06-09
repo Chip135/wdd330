@@ -1,5 +1,6 @@
-import { getLocalStorage } from "./utils.mjs";
+import { alertMessage, getLocalStorage, removeAllAlerts } from "./utils.mjs";
 import { checkout } from "./externalServices.mjs";
+
 
 function formDataToJSON(formElement) {
   const formData = new FormData(formElement),
@@ -92,10 +93,25 @@ const checkoutProcess = {
           window.location.href="../checkout/success.html";
           localStorage.clear();
         } catch (err) {
+          removeAllAlerts();
+
+          //for(let message in err.message){
+            //err.message.PromiseResult.forEach(e => {
+              err.message.then(e => {
+                for(let value of Object.values(e)) {
+                  
+                  alertMessage(value);
+                  //console.log(message);
+                }
+                console.log(e);
+              });
+            //});
+            
+          //}
           console.log(err);
         }
       },
-}
+};
 
 export async function checkoutCount() {
     const cartItems = await getLocalStorage("so-cart");
