@@ -14,15 +14,15 @@ function formDataToJSON(formElement) {
 }
 
 function packageItems(items) {
-  const simplifiedItems = items.map((item) => {
+  const simplifiedItems = items.map((item) => 
     //console.log(item);
-    return {
+     ({
       id: item.Id,
       price: item.FinalPrice,
       name: item.Name,
       quantity: 1,
-    };
-  });
+    })
+  );
   return simplifiedItems;
 }
 
@@ -89,8 +89,8 @@ const checkoutProcess = {
         //console.log(json);
         try {
           const res = await checkout(json);
+          window.location.href = "../checkout/success.html";
           console.log(res);
-          window.location.href="../checkout/success.html";
           localStorage.clear();
         } catch (err) {
           removeAllAlerts();
@@ -103,12 +103,12 @@ const checkoutProcess = {
                   alertMessage(value);
                   //console.log(message);
                 }
-                console.log(e);
+                //console.log(e);
               });
             //});
             
           //}
-          console.log(err);
+          //console.log(err);
         }
       },
 };
