@@ -67,20 +67,8 @@ removeFromCartListners.forEach((element) => {
     });
     setLocalStorage("so-cart", cartItems);
     if (cartItems.length == 0) {
-      localStorage.clear();
+      localStorage.removeItem("so-cart");
     }
     location.reload();
   });
 });
-
-// export function removeFromCart(id) {
-
-//   let items = getLocalStorage("so-cart");
-//   items.forEach(function(item, index) {
-//     if(id === item.Id){
-//       items.splice(index, 1);
-//     }
-//      setTimeout(cartCount, 250);
-//   });
-//   setLocalStorage("so-cart", items);
-// }
