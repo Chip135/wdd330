@@ -1,4 +1,5 @@
 const baseURL = import.meta.env.VITE_SERVER_URL;
+//const baseURL = `http://server-nodejs.cit.byui.edu:3000/login`;
 
 async function convertToJson(res) {
   let jsonResponse = res.json();
@@ -32,22 +33,39 @@ export async function checkout(payload) {
   return await fetch(baseURL + "checkout/", options).then(convertToJson);
 }
 
-export async function loginRequest(creds){
-  let url = `http://server-nodejs.cit.byui.edu:3000/login`;
-  await fetch(url, {
+// export async function loginRequest(creds){
+//   // let url = `http://server-nodejs.cit.byui.edu:3000/login`;
+//   console.log("inside loginRequest function");
+//   const options ={
+//   method: "POST",
+//   headers: {
+//     "Content-Type": "application/json"
+//   },
+//   body: JSON.stringify(creds),
+// };
+//   const response =  await fetch(baseURL + "login", options).then(convertToJson);
+//   return response.accessToken;
+// }
+export async function loginRequest(user) {
+  const options = {
     method: "POST",
-    body: JSON.stringify(creds),
-  });
-
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  };
+  const response = await fetch(baseURL + "login", options).then(convertToJson);
+  return response.accessToken;
 }
 
-export async function getOrders(orders) {
-  let url = `http://server-nodejs.cit.byui.edu:3000/orders`;
+export async function getOrders(token) {
   const options = {
     method: "GET",
+    // the server will reject our request if we don't include the Authorization header with a valid token!
     headers: {
-      "Authorization": `Bearer ${orders}`
-    }
+      Authorization: `Bearer ${token}`,
+    },
   };
-  return await fetch(url, options).then(convertToJson);
+  const response = await fetch(baseURL + "orders", options).then(convertToJson);
+  return response;
 }

@@ -5,9 +5,11 @@ import jwt_decode from "jwt-decode";
 const tokenKey = "so-token";
 
 export async function login(creds, redirect = "/"){
+    console.log("login function")
     try {
         const token = await loginRequest(creds);
         setLocalStorage(tokenKey, token);
+        console.log("token set")
 
         window.location = redirect;
     } catch (err) {
@@ -32,7 +34,7 @@ function isTokenValid(token){
         const decoded = jwt_decode(token);
         let currentDate = new Date();
         if (decoded.exp * 1000 < currentDate.getTime()) {
-            console.log("Token expired")
+            console.log("Token expired");
             return false;
         } else {
             console.log("Token valid");
