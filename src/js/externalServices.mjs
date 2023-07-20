@@ -54,8 +54,9 @@ export async function loginRequest(user) {
     },
     body: JSON.stringify(user),
   };
-  const response = await fetch(baseURL + "login", options).then(convertToJson);
-  return response.accessToken;
+  const response = await fetch(baseURL + "login", options);
+  const result = await response.json();
+  return result.accessToken;
 }
 
 export async function getOrders(token) {
